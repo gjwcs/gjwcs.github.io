@@ -1,0 +1,408 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="author" content="Jiawei Gu">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="Jiawei Gu, Out-of-Distribution Detection, Graph Neural Networks, Numerical Stability, Calibration, Trustworthy Machine Learning, Structural Reliability">
+  <meta name="description" content="Jiawei Gu's homepage">
+
+  <style>
+    body { background-color: white; }
+  </style>
+  <title>Jiawei Gu</title>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="icon" type="image/jpg" href="images/avatar.jpg">
+</head>
+
+<body>
+  <table style="width:100%;max-width:850px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <tr style="padding:0px">
+      <td style="padding:0px">
+
+<!-- ============================================================ -->
+<!-- HEADER: photo + bio                                          -->
+<!-- ============================================================ -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr style="padding:0px">
+
+            <!-- profile photo -->
+            <td style="padding:2.5%;width:39%;max-width:39%">
+              <a href="images/avatar.jpg">
+                <img style="max-width:100%; border-radius:8px;" alt="profile photo" src="images/avatar.jpg" class="hoverZoomLink">
+              </a>
+              <p style="text-align:center">
+                <a href="mailto:gjwcs@outlook.com">gjwcs@outlook.com</a>
+              </p>
+            </td>
+
+            <!-- bio -->
+            <td style="padding:2.5%;width:85%;vertical-align:middle">
+              <p style="text-align:center">
+                <name>Jiawei Gu</name>
+              </p>
+
+              <p>
+                I am a joint postdoctoral fellow at the
+                <a href="https://www.sigs.tsinghua.edu.cn/en/">Tsinghua Shenzhen International Graduate School</a>,
+                advised by Prof. <a href="https://sites.google.com/view/iigroup-thu">Yujiu Yang</a>,
+                and at <a href="https://www.gbu.edu.cn/?lang=en">Great Bay University</a>,
+                advised by Prof. <a href="https://qiaoziyue.com/">Ziyue Qiao</a>.
+                I received my Ph.D. in Computer Science from
+                <a href="https://www.njust.edu.cn/">Nanjing University of Science and Technology</a> in 2026,
+                under the supervision of Prof. <a href="https://zechao-li.github.io/">Zechao Li</a>.
+              </p>
+
+              <p>
+                My research centers on the <strong>Structural Reliability of Neural Representations</strong>,
+                a unified study of <em>when</em>, <em>why</em>, and <em>how</em> modern deep models silently fail,
+                conducted from the inside. The deployment failures that matter most today, including
+                overconfident wrong predictions, hidden bias, and breakdown under low precision, are not random noise.
+                They leave <strong>identifiable signatures in the geometry, spectrum, and numerics of what a model has learned</strong>,
+                and these signatures admit principled diagnosis and lightweight correction.
+              </p>
+
+              <p>
+                My work is organized around three perspectives:
+                <ul>
+                  <li><strong>Geometry</strong>: the shape of feature distributions, the flow of local gradients, and the dynamics of hidden-state trajectories reveal where a prediction is trustworthy and where it has drifted off the manifold.</li>
+                  <li><strong>Spectrum</strong>: eigenvalues, Laplacians, and covariance structure expose anomalies, ill-conditioning, and collapse modes that scalar accuracy alone cannot detect.</li>
+                  <li><strong>Numerics</strong>: finite-precision arithmetic, conditioning, and compilation decide whether the model in theory still matches the model in production.</li>
+                </ul>
+                A defining choice across my work is to keep every correction <strong>post-hoc, lightweight, and theoretically grounded</strong>.
+                These are methods that require no retraining, integrate cleanly into existing pipelines, and come with a clear mathematical account of <em>why</em> they work.
+                I aim for tools that real systems can adopt today, and that science can falsify tomorrow.
+              </p>
+
+            </td>
+          </tr>
+        </tbody></table>
+
+<!-- ============================================================ -->
+<!-- NEWS                                                          -->
+<!-- ============================================================ -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>News</heading>
+              <p></p>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr><td style="padding:0 20px 0 20px;vertical-align:top;">
+            <ul style="padding-left:1.2em;margin:0;">
+              <li><strong>2026.05</strong>&nbsp;&nbsp;<em>Detecting the Semantic Fixed Point</em> upgraded to <strong>Oral</strong> at ICML 2026 (acceptance rate 2.6%).</li>
+              <li><strong>2026.05</strong>&nbsp;&nbsp;Two papers on GNN numerical stability accepted at <strong>KDD 2026</strong>.</li>
+              <li><strong>2026.04</strong>&nbsp;&nbsp;Two papers accepted at <strong>ICML 2026</strong>.</li>
+              <li><strong>2026.02</strong>&nbsp;&nbsp;Started joint postdoctoral position at Tsinghua SIGS and Great Bay University.</li>
+              <li><strong>2025.09</strong>&nbsp;&nbsp;Three papers accepted at <strong>NeurIPS 2025</strong>.</li>
+              <li><strong>2025.07</strong>&nbsp;&nbsp;<em>Gradient Short-Circuit</em> accepted at <strong>ICCV 2025</strong>.</li>
+              <li><strong>2025.07</strong>&nbsp;&nbsp;<em>Activation Shape Matters</em> accepted at <strong>ACM MM 2025</strong>.</li>
+              <li><strong>2025.04</strong>&nbsp;&nbsp;Two papers accepted at <strong>IJCAI 2025</strong>.</li>
+            </ul>
+            <p></p>
+          </td></tr>
+        </tbody></table>
+
+<!-- ============================================================ -->
+<!-- SELECTED PUBLICATIONS                                         -->
+<!-- ============================================================ -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Selected Publications</heading>
+              <p></p>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+          <!-- ===== 1. KDD 2026: Compilation Breaks GNN ===== -->
+          <tr>
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/07_KDD_CompilationGNN.png" alt="Compilation Breaks GNN" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>When Compilation Breaks Your GNN: A Numerical Stability Perspective</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://zechao-li.github.io/">Zechao Li</a>
+              <br>
+              <em>ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)</em>, 2026
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- ===== 2. KDD 2026: Hidden Fragility of GNNs ===== -->
+          <tr>
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/08_KDD_HiddenFragilityGNN.png" alt="Hidden Fragility of GNNs" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>The Hidden Fragility of GNNs: How Graph Structure Amplifies Numerical Errors</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>
+              <br>
+              <em>ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)</em>, 2026
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- ===== 3. ICML 2026 Oral: Semantic Fixed Point ===== -->
+          <tr>
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/04_ICML_SemanticFixedPoint.png" alt="Semantic Fixed Point" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>Detecting the Semantic Fixed Point: A Geometric Framework for Efficient Inference</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
+              Xiao Luo
+              <br>
+              <em>International Conference on Machine Learning (ICML)</em>, 2026, <span style="color:red">(Oral, acceptance rate 2.6%)</span>
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- ===== 4. ICML 2026: Precision-Induced Miscalibration ===== -->
+          <tr>
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/03_ICML_PrecisionMiscalibration.png" alt="Precision Miscalibration" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>Precision-Induced Miscalibration: Understanding and Correcting Confidence Distortion in Quantized Neural Networks</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              Fengyuan Nie,
+              Hao Tang,
+              Yanpeng Sun
+              <br>
+              <em>International Conference on Machine Learning (ICML)</em>, 2026
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- ===== 5. NeurIPS 2025: Halley-SVD ===== -->
+          <tr>
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/10_NeurIPS_HalleySVD.png" alt="Halley-SVD" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>Revitalizing SVD for Global Covariance Pooling: Halley's Method to Overcome Over-Flattening</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
+              Xinming Li,
+              <a href="https://zechao-li.github.io/">Zechao Li</a>
+              <br>
+              <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, 2025
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- ===== 6. NeurIPS 2025: RAGNOR ===== -->
+          <tr>
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/09_NeurIPS_RAGNOR.png" alt="RAGNOR" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>Refining Norms: A Post-hoc Framework for OOD Detection in Graph Neural Networks</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
+              <a href="https://zechao-li.github.io/">Zechao Li</a>
+              <br>
+              <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, 2025
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- ===== 7. NeurIPS 2025: Fourier Clouds ===== -->
+          <tr>
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/11_NeurIPS_FourierClouds.png" alt="Fourier Clouds" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>Fourier Clouds: Fast Bias Correction for Imbalanced Semi-Supervised Learning</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              Yidi Wang,
+              Qingqiang Sun,
+              Xinming Li,
+              Xiao Luo,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>
+              <br>
+              <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, 2025
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- ===== 8. ACM MM 2025: Activation Shape Matters ===== -->
+          <tr>
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/01_ACMMM_NormEntropy.png" alt="Activation Shape Matters" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>Activation Shape Matters: OOD Detection with Norm-Entropy Fusion</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
+              <a href="https://zechao-li.github.io/">Zechao Li</a>
+              <br>
+              <em>ACM International Conference on Multimedia (ACM MM)</em>, 2025
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- ===== 9. ICCV 2025: Gradient Short-Circuit ===== -->
+          <tr>
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/02_ICCV_GradientShortCircuit.png" alt="Gradient Short-Circuit" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>Gradient Short-Circuit: Efficient Out-of-Distribution Detection via Feature Intervention</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
+              <a href="https://zechao-li.github.io/">Zechao Li</a>
+              <br>
+              <em>International Conference on Computer Vision (ICCV)</em>, 2025
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- ===== 10. IJCAI 2025: SpectralGap ===== -->
+          <tr>
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/05_IJCAI_SpectralGap.png" alt="SpectralGap" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>SpectralGap: Graph-Level Out-of-Distribution Detection via Laplacian Eigenvalue Gaps</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
+              <a href="https://zechao-li.github.io/">Zechao Li</a>
+              <br>
+              <em>International Joint Conference on Artificial Intelligence (IJCAI)</em>, 2025, <span style="color:#888;">(CORE A)</span>
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- ===== 11. IJCAI 2025: NeuBM ===== -->
+          <tr>
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/06_IJCAI_NeuBM.png" alt="NeuBM" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>NeuBM: Mitigating Model Bias in Graph Neural Networks Through Neutral Input Calibration</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
+              Xiao Luo
+              <br>
+              <em>International Joint Conference on Artificial Intelligence (IJCAI)</em>, 2025, <span style="color:#888;">(CORE A)</span>
+              <p></p>
+            </td>
+          </tr>
+
+        </tbody></table>
+
+<!-- ============================================================ -->
+<!-- JOURNAL PUBLICATIONS                                          -->
+<!-- ============================================================ -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Journal Publications</heading>
+              <p></p>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr><td style="padding:0 20px 0 20px;vertical-align:top;">
+            <ol style="padding-left:1.4em;margin:0;">
+              <li style="margin-bottom:10px;">
+                <papertitle>Bridging the Subpopulation Gap: A New Paradigm for Robust Fault Diagnosis in Rotating Machinery</papertitle>.
+                <strong>Jiawei Gu</strong>, Xin Yuan, Xinming Li, Yanxue Wang, <a href="https://qiaoziyue.com/">Ziyue Qiao</a>, Hui Xiong.
+                <em>IEEE Transactions on Industrial Informatics (TII)</em>, 2026.
+              </li>
+              <li style="margin-bottom:10px;">
+                <papertitle>Symmetric Radial Vectors for Uncertainty-Aware Rotary Machinery Fault Diagnosis</papertitle>.
+                <strong>Jiawei Gu</strong>, Xin Yuan, Xinming Li, Yanxue Wang, Jianhua Xing.
+                <em>Reliability Engineering &amp; System Safety (RESS)</em>, 2025.
+              </li>
+            </ol>
+            <p></p>
+          </td></tr>
+        </tbody></table>
+
+<!-- ============================================================ -->
+<!-- HONORS & AWARDS                                               -->
+<!-- ============================================================ -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Honors and Awards</heading>
+              <p></p>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr><td style="padding:0 20px 0 20px;vertical-align:top;">
+            <ul style="padding-left:1.2em;margin:0;">
+              <li><strong>2022</strong>&nbsp;&nbsp;Structural Health Monitoring technology successfully applied to the Beijing Winter Olympics.</li>
+              <li><strong>2021</strong>&nbsp;&nbsp;Young Expert, Shanghai Institute of Aeronautical Measurement and Control Technology.</li>
+              <li><strong>2020</strong>&nbsp;&nbsp;Excellent Master Thesis, Guilin University of Electronic Technology.</li>
+              <li><strong>2020</strong>&nbsp;&nbsp;Time-Frequency Domain Compressed Sensing technology applied to Urban Rail Train-Track integrated monitoring system, with significant industrial impact.</li>
+              <li><strong>2017</strong>&nbsp;&nbsp;Second Prize, "Huawei Cup" China Postgraduate Mathematical Contest in Modeling.</li>
+            </ul>
+            <p></p>
+          </td></tr>
+        </tbody></table>
+
+<!-- ============================================================ -->
+<!-- ACADEMIC SERVICE                                              -->
+<!-- ============================================================ -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Academic Service</heading>
+              <p></p>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr><td style="padding:0 20px 0 20px;vertical-align:top;">
+            <p><strong>Conference reviewer</strong>: top-tier venues in machine learning (NeurIPS, ICML, ICLR), computer vision (CVPR, ICCV, ECCV), artificial intelligence (AAAI, IJCAI), and data mining / multimedia (KDD, ACM MM).</p>
+            <p><strong>Journal reviewer</strong>: IEEE TPAMI, IEEE TKDE, IEEE TNNLS, IEEE TMM, IEEE TCSVT, IEEE TII, IEEE TIE, Reliability Engineering &amp; System Safety (RESS), Mechanical Systems and Signal Processing (MSSP), Measurement.</p>
+            <p></p>
+          </td></tr>
+        </tbody></table>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;background-color:PapayaWhip"><tbody>
+          <tr>
+            <td style="text-align:center">
+              <p>
+                Web template &copy; <a href="https://github.com/jonbarron/website" target="_blank" rel="external nofollow noopener noreferrer">Jon Barron</a>.
+                &nbsp All content &copy; Jiawei Gu.
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+
+      </td>
+    </tr>
+  </tbody></table>
+</body>
+</html>
