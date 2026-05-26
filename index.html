@@ -4,11 +4,33 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="author" content="Jiawei Gu">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="Jiawei Gu, Out-of-Distribution Detection, Graph Neural Networks, Numerical Stability, Calibration, Trustworthy Machine Learning, Structural Reliability">
+  <meta name="keywords" content="Jiawei Gu, Structural Reliability of Neural Representations, Representation Validity, Computation Stability, Decision Trustworthiness, Out-of-Distribution Detection, Graph Neural Networks, Numerical Stability, Calibration, Efficient Inference, Trustworthy Machine Learning">
   <meta name="description" content="Jiawei Gu's homepage">
 
   <style>
     body { background-color: white; }
+    .module-header {
+      background-color: #f4f4f4;
+      border-left: 4px solid #555;
+      padding: 12px 16px;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      border-radius: 4px;
+    }
+    .module-title {
+      font-size: 1.05em;
+      font-weight: bold;
+      color: #222;
+    }
+    .module-tagline {
+      color: #555;
+      font-size: 0.92em;
+      margin-top: 4px;
+    }
+    .bridge-marker {
+      color: #b8860b;
+      font-weight: bold;
+    }
   </style>
   <title>Jiawei Gu</title>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
@@ -54,24 +76,50 @@
               </p>
 
               <p>
-                My research centers on the <strong>Structural Reliability of Neural Representations</strong>,
-                a unified study of <em>when</em>, <em>why</em>, and <em>how</em> modern deep models silently fail,
-                conducted from the inside. The deployment failures that matter most today, including
-                overconfident wrong predictions, hidden bias, and breakdown under low precision, are not random noise.
-                They leave <strong>identifiable signatures in the geometry, spectrum, and numerics of what a model has learned</strong>,
-                and these signatures admit principled diagnosis and lightweight correction.
+                A trained neural model in deployment fails along three irreducible axes.
+                Its <strong>representation</strong> may become <em>invalid</em> under distribution shift,
+                drifting out of the semantic region the model actually learned.
+                Its <strong>computation</strong> may become <em>unstable</em> under numerical, structural,
+                or compilation-induced perturbations, silently amplifying tiny errors across layers.
+                Its <strong>decision</strong> may become <em>untrustworthy</em> through miscalibration,
+                overconfident output, or premature inference.
+                A model is reliable only when all three hold simultaneously.
+                Failing any one already breaks the system, no matter how clean the other two look.
+              </p>
+
+              <p style="margin-top:14px; padding:14px 16px; border-left:3px solid #555; background-color:#fafafa; line-height:1.55;">
+                <strong>This gives the program a precise definition:</strong><br>
+                <span style="font-size:1.07em; letter-spacing:0.15px;">
+                  <strong>Structural Reliability of Neural Representations</strong>
+                  &nbsp;=&nbsp; <strong>Representation Validity</strong>
+                  &nbsp;+&nbsp; <strong>Computation Stability</strong>
+                  &nbsp;+&nbsp; <strong>Decision Trustworthiness</strong>.
+                </span><br>
+                <span style="color:#444;">In one line:
+                <em>valid representations, stable computations, trustworthy decisions.</em></span>
               </p>
 
               <p>
-                My work is organized around three perspectives:
-                <ul>
-                  <li><strong>Geometry</strong>: the shape of feature distributions, the flow of local gradients, and the dynamics of hidden-state trajectories reveal where a prediction is trustworthy and where it has drifted off the manifold.</li>
-                  <li><strong>Spectrum</strong>: eigenvalues, Laplacians, and covariance structure expose anomalies, ill-conditioning, and collapse modes that scalar accuracy alone cannot detect.</li>
-                  <li><strong>Numerics</strong>: finite-precision arithmetic, conditioning, and compilation decide whether the model in theory still matches the model in production.</li>
-                </ul>
-                A defining choice across my work is to keep every correction <strong>post-hoc, lightweight, and theoretically grounded</strong>.
-                These are methods that require no retraining, integrate cleanly into existing pipelines, and come with a clear mathematical account of <em>why</em> they work.
-                I aim for tools that real systems can adopt today, and that science can falsify tomorrow.
+                My research is the systematic execution of this decomposition.
+                Each of the three terms above is a self-contained research question with its own core object,
+                its own failure modes, and its own diagnostic tools;
+                taken together, they exhaust what it means for a trained representation to be reliable in deployment.
+              </p>
+
+              <ul>
+                <li><strong>Representation Validity</strong>: when does a learned representation remain in a semantically meaningful region of feature space? (OOD detection, feature-norm anomalies, gradient sensitivity, graph-spectral signals.)</li>
+                <li><strong>Computation Stability</strong>: when do neural computations amplify small perturbations into large representational errors? (Graph message passing, differentiable matrix functions, finite-precision arithmetic, compiled kernels.)</li>
+                <li><strong>Decision Trustworthiness</strong>: when can the output, confidence, or stopping decision of a model actually be trusted? (Calibration under quantization, bias correction, risk-controlled inference, semantic convergence.)</li>
+              </ul>
+
+              <p>
+                Within this framework I analyze failures through three technical lenses:
+                <strong>geometry</strong> (feature distributions, local gradient flow, hidden-state trajectories),
+                <strong>spectrum</strong> (eigenvalues, Laplacians, covariance structure),
+                and <strong>numerics</strong> (finite precision, conditioning, compilation).
+                A defining methodological choice across all of my work is to keep every correction
+                <strong>post-hoc, lightweight, and theoretically grounded</strong>:
+                no retraining, clean integration into existing pipelines, and a mathematical account of <em>why</em> it works.
               </p>
 
             </td>
@@ -107,37 +155,137 @@
         </tbody></table>
 
 <!-- ============================================================ -->
-<!-- SELECTED PUBLICATIONS                                         -->
+<!-- SELECTED PUBLICATIONS (organized by pillar)                   -->
 <!-- ============================================================ -->
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr>
             <td style="padding:20px;width:100%;vertical-align:middle">
               <heading>Selected Publications</heading>
-              <p></p>
+              <p style="color:#444;font-size:0.95em;line-height:1.55;margin-top:8px;">
+                The papers below are organized as the three pillars of the program.
+                Each pillar is a self-contained research question;
+                together, they constitute
+                <strong>Structural Reliability of Neural Representations</strong>.
+                <span class="bridge-marker">&#9733;</span>
+                marks a paper that bridges two pillars.
+              </p>
             </td>
           </tr>
         </tbody></table>
 
+<!-- ============================================================ -->
+<!-- PILLAR I: REPRESENTATION VALIDITY                             -->
+<!-- ============================================================ -->
+        <div class="module-header">
+          <div class="module-title" style="font-size:1.12em;">Pillar I &nbsp;&middot;&nbsp; Representation Validity</div>
+          <div class="module-tagline">
+            When does a learned representation remain in a semantically valid region of feature space?
+            Out-of-distribution detection, feature-norm anomalies, gradient sensitivity,
+            and graph-spectral signals all measure the same underlying object:
+            the radial, angular, and structural relationship between a representation
+            and the region the model was actually trained on.
+          </div>
+        </div>
+
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-          <!-- ===== 1. KDD 2026: Compilation Breaks GNN ===== -->
-          <tr>
+          <!-- RAGNOR -->
+          <tr id="ragnor">
             <td style="padding:10px;width:25%;vertical-align:middle">
-              <img src="images/07_KDD_CompilationGNN.png" alt="Compilation Breaks GNN" style="width:100%;border-radius:4px;">
+              <img src="images/09_NeurIPS_RAGNOR.png" alt="RAGNOR" style="width:100%;border-radius:4px;">
             </td>
             <td style="padding:10px;width:75%;vertical-align:middle">
-              <papertitle>When Compilation Breaks Your GNN: A Numerical Stability Perspective</papertitle>
+              <papertitle>Refining Norms: A Post-hoc Framework for OOD Detection in Graph Neural Networks</papertitle>
               <br>
               <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
               <a href="https://zechao-li.github.io/">Zechao Li</a>
               <br>
-              <em>ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)</em>, 2026
+              <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, 2025
+              <br>
+              <span style="color:#666;font-size:0.9em;">Refining feature norms as a representation-validity signal for OOD detection on graphs.</span>
               <p></p>
             </td>
           </tr>
 
-          <!-- ===== 2. KDD 2026: Hidden Fragility of GNNs ===== -->
-          <tr>
+          <!-- Activation Shape -->
+          <tr id="activation-shape">
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/01_ACMMM_NormEntropy.png" alt="Activation Shape Matters" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>Activation Shape Matters: OOD Detection with Norm-Entropy Fusion</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
+              <a href="https://zechao-li.github.io/">Zechao Li</a>
+              <br>
+              <em>ACM International Conference on Multimedia (ACM MM)</em>, 2025
+              <br>
+              <span style="color:#666;font-size:0.9em;">Coupling feature-norm magnitude with activation-distribution shape for OOD detection.</span>
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- Gradient Short-Circuit -->
+          <tr id="gradient-shortcircuit">
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/02_ICCV_GradientShortCircuit.png" alt="Gradient Short-Circuit" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>Gradient Short-Circuit: Efficient Out-of-Distribution Detection via Feature Intervention</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
+              <a href="https://zechao-li.github.io/">Zechao Li</a>
+              <br>
+              <em>International Conference on Computer Vision (ICCV)</em>, 2025
+              <br>
+              <span style="color:#666;font-size:0.9em;">Local gradient sensitivity as a geometric diagnostic of representation validity for OOD detection.</span>
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- SpectralGap -->
+          <tr id="spectralgap">
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/05_IJCAI_SpectralGap.png" alt="SpectralGap" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>SpectralGap: Graph-Level Out-of-Distribution Detection via Laplacian Eigenvalue Gaps</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
+              <a href="https://zechao-li.github.io/">Zechao Li</a>
+              <br>
+              <em>International Joint Conference on Artificial Intelligence (IJCAI)</em>, 2025, <span style="color:#888;">(CORE A)</span>
+              <br>
+              <span style="color:#666;font-size:0.9em;">Graph-level OOD detection via Laplacian spectrum gaps, reading representation validity from the spectral footprint of computation.</span>
+              <p></p>
+            </td>
+          </tr>
+
+        </tbody></table>
+
+<!-- ============================================================ -->
+<!-- PILLAR II: COMPUTATION STABILITY                              -->
+<!-- ============================================================ -->
+        <div class="module-header">
+          <div class="module-title" style="font-size:1.12em;">Pillar II &nbsp;&middot;&nbsp; Computation Stability</div>
+          <div class="module-tagline">
+            When do neural computations amplify small perturbations into large representational errors?
+            Whether the computation is sparse message passing on a graph,
+            a dense differentiable matrix function inside a covariance pooling layer,
+            or a compiler-rewritten fused kernel running in mixed precision,
+            the underlying question is the same: how does the numerical condition of the operator
+            control error propagation across layers?
+          </div>
+        </div>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+          <!-- Hidden Fragility of GNNs -->
+          <tr id="hidden-fragility">
             <td style="padding:10px;width:25%;vertical-align:middle">
               <img src="images/08_KDD_HiddenFragilityGNN.png" alt="Hidden Fragility of GNNs" style="width:100%;border-radius:4px;">
             </td>
@@ -148,12 +296,73 @@
               <a href="https://qiaoziyue.com/">Ziyue Qiao</a>
               <br>
               <em>ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)</em>, 2026
+              <br>
+              <span style="color:#666;font-size:0.9em;">Graph structure as an amplifier of finite-precision error in message passing.</span>
               <p></p>
             </td>
           </tr>
 
-          <!-- ===== 3. ICML 2026 Oral: Semantic Fixed Point ===== -->
-          <tr>
+          <!-- Compilation Breaks GNN -->
+          <tr id="compilation-gnn">
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/07_KDD_CompilationGNN.png" alt="Compilation Breaks GNN" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>When Compilation Breaks Your GNN: A Numerical Stability Perspective</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://zechao-li.github.io/">Zechao Li</a>
+              <br>
+              <em>ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)</em>, 2026
+              <br>
+              <span style="color:#666;font-size:0.9em;">Compiler rewrites as perturbations of the computation graph that silently break deployed GNNs.</span>
+              <p></p>
+            </td>
+          </tr>
+
+          <!-- Halley-SVD -->
+          <tr id="halley-svd">
+            <td style="padding:10px;width:25%;vertical-align:middle">
+              <img src="images/10_NeurIPS_HalleySVD.png" alt="Halley-SVD" style="width:100%;border-radius:4px;">
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <papertitle>Revitalizing SVD for Global Covariance Pooling: Halley&rsquo;s Method to Overcome Over-Flattening</papertitle>
+              <br>
+              <strong>Jiawei Gu</strong>,
+              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
+              Xinming Li,
+              <a href="https://zechao-li.github.io/">Zechao Li</a>
+              <br>
+              <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, 2025
+              <br>
+              <span style="color:#666;font-size:0.9em;">Spectral fidelity of a differentiable matrix-function layer: higher-order iteration preserves small-eigenvalue dynamic range in covariance pooling.</span>
+              <p></p>
+            </td>
+          </tr>
+
+        </tbody></table>
+
+<!-- ============================================================ -->
+<!-- BRIDGE: Pillar II -> Pillar III                              -->
+<!-- ============================================================ -->
+        <div class="module-header" style="border-left-color:#b8860b; background-color:#fbf7ec; margin-left:40px; margin-right:40px; padding:8px 14px;">
+          <div class="module-title" style="font-size:0.95em;">
+            <span class="bridge-marker">&#9733;</span>
+            &nbsp;Bridge between Pillars II and III &nbsp;|&nbsp; Computation Stability &rarr; Decision Trustworthiness
+          </div>
+          <div class="module-tagline" style="font-size:0.88em;">
+            When neural computation converges to a semantically meaningful state,
+            the resulting decision can be trusted to stop early.
+            This work connects the two pillars: a stability-side convergence criterion
+            becomes a trustworthiness-side stopping rule for efficient inference,
+            yielding sample-wise effective computation depth in large language models.
+          </div>
+        </div>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+          <!-- Semantic Fixed Point -->
+          <tr id="semantic-fixed-point">
             <td style="padding:10px;width:25%;vertical-align:middle">
               <img src="images/04_ICML_SemanticFixedPoint.png" alt="Semantic Fixed Point" style="width:100%;border-radius:4px;">
             </td>
@@ -165,12 +374,32 @@
               Xiao Luo
               <br>
               <em>International Conference on Machine Learning (ICML)</em>, 2026, <span style="color:red">(Oral, acceptance rate 2.6%)</span>
+              <br>
+              <span style="color:#666;font-size:0.9em;">Detecting semantic-state convergence as a geometric criterion for sample-wise effective inference depth: a trustworthy stopping rule for efficient inference.</span>
               <p></p>
             </td>
           </tr>
 
-          <!-- ===== 4. ICML 2026: Precision-Induced Miscalibration ===== -->
-          <tr>
+        </tbody></table>
+
+<!-- ============================================================ -->
+<!-- PILLAR III: DECISION TRUSTWORTHINESS                          -->
+<!-- ============================================================ -->
+        <div class="module-header">
+          <div class="module-title" style="font-size:1.12em;">Pillar III &nbsp;&middot;&nbsp; Decision Trustworthiness</div>
+          <div class="module-tagline">
+            When can the output, confidence, or stopping decision of a deployed model
+            actually be trusted? Even valid representations transported through stable computation
+            can fail at this final stage: confidence may be miscalibrated under quantization,
+            predictions may carry systematic bias, and inference may stop too early or run too long.
+            This pillar addresses model calibration, bias correction, and risk-controlled inference.
+          </div>
+        </div>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+          <!-- Precision Miscalibration -->
+          <tr id="precision-miscalibration">
             <td style="padding:10px;width:25%;vertical-align:middle">
               <img src="images/03_ICML_PrecisionMiscalibration.png" alt="Precision Miscalibration" style="width:100%;border-radius:4px;">
             </td>
@@ -183,47 +412,33 @@
               Yanpeng Sun
               <br>
               <em>International Conference on Machine Learning (ICML)</em>, 2026
+              <br>
+              <span style="color:#666;font-size:0.9em;">Finite-precision distortion of logit margins as the root cause of confidence miscalibration in quantized networks.</span>
               <p></p>
             </td>
           </tr>
 
-          <!-- ===== 5. NeurIPS 2025: Halley-SVD ===== -->
-          <tr>
+          <!-- NeuBM -->
+          <tr id="neubm">
             <td style="padding:10px;width:25%;vertical-align:middle">
-              <img src="images/10_NeurIPS_HalleySVD.png" alt="Halley-SVD" style="width:100%;border-radius:4px;">
+              <img src="images/06_IJCAI_NeuBM.png" alt="NeuBM" style="width:100%;border-radius:4px;">
             </td>
             <td style="padding:10px;width:75%;vertical-align:middle">
-              <papertitle>Revitalizing SVD for Global Covariance Pooling: Halley's Method to Overcome Over-Flattening</papertitle>
+              <papertitle>NeuBM: Mitigating Model Bias in Graph Neural Networks Through Neutral Input Calibration</papertitle>
               <br>
               <strong>Jiawei Gu</strong>,
               <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
-              Xinming Li,
-              <a href="https://zechao-li.github.io/">Zechao Li</a>
+              Xiao Luo
               <br>
-              <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, 2025
+              <em>International Joint Conference on Artificial Intelligence (IJCAI)</em>, 2025, <span style="color:#888;">(CORE A)</span>
+              <br>
+              <span style="color:#666;font-size:0.9em;">Mitigating systematic prediction bias in GNNs through neutral-input calibration.</span>
               <p></p>
             </td>
           </tr>
 
-          <!-- ===== 6. NeurIPS 2025: RAGNOR ===== -->
-          <tr>
-            <td style="padding:10px;width:25%;vertical-align:middle">
-              <img src="images/09_NeurIPS_RAGNOR.png" alt="RAGNOR" style="width:100%;border-radius:4px;">
-            </td>
-            <td style="padding:10px;width:75%;vertical-align:middle">
-              <papertitle>Refining Norms: A Post-hoc Framework for OOD Detection in Graph Neural Networks</papertitle>
-              <br>
-              <strong>Jiawei Gu</strong>,
-              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
-              <a href="https://zechao-li.github.io/">Zechao Li</a>
-              <br>
-              <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, 2025
-              <p></p>
-            </td>
-          </tr>
-
-          <!-- ===== 7. NeurIPS 2025: Fourier Clouds ===== -->
-          <tr>
+          <!-- Fourier Clouds -->
+          <tr id="fourier-clouds">
             <td style="padding:10px;width:25%;vertical-align:middle">
               <img src="images/11_NeurIPS_FourierClouds.png" alt="Fourier Clouds" style="width:100%;border-radius:4px;">
             </td>
@@ -238,78 +453,52 @@
               <a href="https://qiaoziyue.com/">Ziyue Qiao</a>
               <br>
               <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, 2025
+              <br>
+              <span style="color:#666;font-size:0.9em;">Post-hoc bias correction in the frequency domain for imbalanced semi-supervised learning.</span>
               <p></p>
             </td>
           </tr>
 
-          <!-- ===== 8. ACM MM 2025: Activation Shape Matters ===== -->
+        </tbody></table>
+
+<!-- ============================================================ -->
+<!-- ONGOING DIRECTIONS                                            -->
+<!-- ============================================================ -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr>
-            <td style="padding:10px;width:25%;vertical-align:middle">
-              <img src="images/01_ACMMM_NormEntropy.png" alt="Activation Shape Matters" style="width:100%;border-radius:4px;">
-            </td>
-            <td style="padding:10px;width:75%;vertical-align:middle">
-              <papertitle>Activation Shape Matters: OOD Detection with Norm-Entropy Fusion</papertitle>
-              <br>
-              <strong>Jiawei Gu</strong>,
-              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
-              <a href="https://zechao-li.github.io/">Zechao Li</a>
-              <br>
-              <em>ACM International Conference on Multimedia (ACM MM)</em>, 2025
-              <p></p>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Ongoing Directions</heading>
+              <p style="color:#666;font-size:0.92em;">
+                I am extending each pillar from a set of diagnostic methods toward a unified theory.
+              </p>
             </td>
           </tr>
+        </tbody></table>
 
-          <!-- ===== 9. ICCV 2025: Gradient Short-Circuit ===== -->
-          <tr>
-            <td style="padding:10px;width:25%;vertical-align:middle">
-              <img src="images/02_ICCV_GradientShortCircuit.png" alt="Gradient Short-Circuit" style="width:100%;border-radius:4px;">
-            </td>
-            <td style="padding:10px;width:75%;vertical-align:middle">
-              <papertitle>Gradient Short-Circuit: Efficient Out-of-Distribution Detection via Feature Intervention</papertitle>
-              <br>
-              <strong>Jiawei Gu</strong>,
-              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
-              <a href="https://zechao-li.github.io/">Zechao Li</a>
-              <br>
-              <em>International Conference on Computer Vision (ICCV)</em>, 2025
-              <p></p>
-            </td>
-          </tr>
-
-          <!-- ===== 10. IJCAI 2025: SpectralGap ===== -->
-          <tr>
-            <td style="padding:10px;width:25%;vertical-align:middle">
-              <img src="images/05_IJCAI_SpectralGap.png" alt="SpectralGap" style="width:100%;border-radius:4px;">
-            </td>
-            <td style="padding:10px;width:75%;vertical-align:middle">
-              <papertitle>SpectralGap: Graph-Level Out-of-Distribution Detection via Laplacian Eigenvalue Gaps</papertitle>
-              <br>
-              <strong>Jiawei Gu</strong>,
-              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
-              <a href="https://zechao-li.github.io/">Zechao Li</a>
-              <br>
-              <em>International Joint Conference on Artificial Intelligence (IJCAI)</em>, 2025, <span style="color:#888;">(CORE A)</span>
-              <p></p>
-            </td>
-          </tr>
-
-          <!-- ===== 11. IJCAI 2025: NeuBM ===== -->
-          <tr>
-            <td style="padding:10px;width:25%;vertical-align:middle">
-              <img src="images/06_IJCAI_NeuBM.png" alt="NeuBM" style="width:100%;border-radius:4px;">
-            </td>
-            <td style="padding:10px;width:75%;vertical-align:middle">
-              <papertitle>NeuBM: Mitigating Model Bias in Graph Neural Networks Through Neutral Input Calibration</papertitle>
-              <br>
-              <strong>Jiawei Gu</strong>,
-              <a href="https://qiaoziyue.com/">Ziyue Qiao</a>,
-              Xiao Luo
-              <br>
-              <em>International Joint Conference on Artificial Intelligence (IJCAI)</em>, 2025, <span style="color:#888;">(CORE A)</span>
-              <p></p>
-            </td>
-          </tr>
-
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr><td style="padding:0 20px 0 20px;vertical-align:top;">
+            <ul style="padding-left:1.2em;margin:0;">
+              <li style="margin-bottom:8px;">
+                <strong>Pillar I &middot; Representation Validity.</strong>
+                A unified geometric account that recovers norm-based, energy-based, distance-based,
+                gradient-based, and graph-spectral OOD signals as projections of a single object,
+                with class-conditional structure estimated from a calibration set alone.
+              </li>
+              <li style="margin-bottom:8px;">
+                <strong>Pillar II &middot; Computation Stability.</strong>
+                A perturbation theory of neural computation that ties graph structure,
+                operator conditioning, and numerical precision into a single stability framework,
+                covering both message-passing networks and differentiable matrix-function layers.
+              </li>
+              <li style="margin-bottom:8px;">
+                <strong>Pillar III &middot; Decision Trustworthiness.</strong>
+                A calibration and inference theory that connects finite-precision arithmetic,
+                semantic-state convergence, and risk-controlled decision making
+                into a unified account of when model outputs can be trusted.
+              </li>
+            </ul>
+            <p></p>
+          </td></tr>
         </tbody></table>
 
 <!-- ============================================================ -->
@@ -318,8 +507,14 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr>
             <td style="padding:20px;width:100%;vertical-align:middle">
-              <heading>Journal Publications</heading>
-              <p></p>
+              <heading>Journal Publications: Domain Applications</heading>
+              <p style="color:#666;font-size:0.92em;">
+                PhD-era work in structural health monitoring and rotating-machinery fault diagnosis.
+                These applications shaped my core problem framing:
+                like failures of physical structures,
+                failures of deployed neural models leave detectable signatures
+                that admit principled diagnosis.
+              </p>
             </td>
           </tr>
         </tbody></table>
@@ -361,7 +556,7 @@
               <li><strong>2021</strong>&nbsp;&nbsp;Young Expert, Shanghai Institute of Aeronautical Measurement and Control Technology.</li>
               <li><strong>2020</strong>&nbsp;&nbsp;Excellent Master Thesis, Guilin University of Electronic Technology.</li>
               <li><strong>2020</strong>&nbsp;&nbsp;Time-Frequency Domain Compressed Sensing technology applied to Urban Rail Train-Track integrated monitoring system, with significant industrial impact.</li>
-              <li><strong>2017</strong>&nbsp;&nbsp;Second Prize, "Huawei Cup" China Postgraduate Mathematical Contest in Modeling.</li>
+              <li><strong>2017</strong>&nbsp;&nbsp;Second Prize, &ldquo;Huawei Cup&rdquo; China Postgraduate Mathematical Contest in Modeling.</li>
             </ul>
             <p></p>
           </td></tr>
